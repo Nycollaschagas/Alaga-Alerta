@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!-- SPDX-License-Identifier: BSD-3-Clause
+     Copyright (c) 2026, Nycollas Kaua Pereira Chagas
+     Licenciado sob a licença BSD de 3 cláusulas. Veja LICENSE.MD. -->
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AlagaAlerta — alertas de alagamento em São Paulo</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <h1>AlagaAlerta</h1>
+    <p>Alertas comunitários de alagamento em São Paulo</p>
+  </header>
+
+  <main>
+    <div id="mensagem" role="status" aria-live="polite"></div>
+
+    <section aria-labelledby="t-risco">
+      <h2 id="t-risco">Chuva prevista nas próximas 6 horas</h2>
+      <label for="sel-risco">Bairro</label>
+      <select id="sel-risco"></select>
+      <div id="risco-resultado" aria-live="polite">Escolha um bairro.</div>
+    </section>
+
+    <section aria-labelledby="t-relatar">
+      <h2 id="t-relatar">Relatar um ponto de alagamento</h2>
+      <form id="form-relato" novalidate>
+        <label for="rel-bairro">Bairro</label>
+        <select id="rel-bairro" required></select>
+
+        <label for="rel-ref">Local de referência (rua, cruzamento, ponto conhecido)</label>
+        <input id="rel-ref" type="text" minlength="3" maxlength="120" required autocomplete="off">
+
+        <label for="rel-nivel">Situação</label>
+        <select id="rel-nivel" required>
+          <option value="1">1 – Atenção: poças e lâmina d'água fina</option>
+          <option value="2">2 – Via alagada: passagem difícil</option>
+          <option value="3">3 – Intransitável</option>
+          <option value="4">4 – Risco grave: evite a área</option>
+        </select>
+
+        <label for="rel-desc">Detalhes (opcional, até 280 caracteres)</label>
+        <textarea id="rel-desc" maxlength="280" rows="3"></textarea>
+
+        <p class="aviso">Não informe nome, telefone ou outros dados pessoais. O sistema não os coleta.</p>
+        <button type="submit">Enviar relato</button>
+      </form>
+    </section>
+
+    <section aria-labelledby="t-lista">
+      <h2 id="t-lista">Pontos reportados</h2>
+      <label for="filtro-bairro">Filtrar por bairro</label>
+      <select id="filtro-bairro"></select>
+      <ul id="lista" class="lista"></ul>
+    </section>
+
+    <section aria-labelledby="t-mod">
+      <details>
+        <summary id="t-mod">Moderação (apenas equipe)</summary>
+        <label for="admin-token">Token de moderação</label>
+        <input id="admin-token" type="password" autocomplete="off">
+        <p class="aviso">O token fica apenas na memória desta página e libera os botões "Resolver" e "Remover".</p>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    <p>Protótipo acadêmico (FIAP – Global Solution CitizenTech). Dados fictícios ou abertos; não substitui os alertas oficiais.</p>
+    <p>Em emergência: Defesa Civil 199 · Bombeiros 193. Licença BSD 3-Clause.</p>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
